@@ -1,4 +1,4 @@
-
+#!/user/bin/python3
 word = "Holberton"
 word_first_3 = [:3]
 word_last_2 = [:-2]
