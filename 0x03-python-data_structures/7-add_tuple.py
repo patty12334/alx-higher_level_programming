@@ -1,5 +1,3 @@
-nes (24 sloc)  504 Bytes
-
 #!/usr/bin/python3
 def add_tuple(tuple_a=(), tuple_b=()):
     len_a = len(tuple_a)

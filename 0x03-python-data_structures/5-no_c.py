@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-_c(my_string):
+def no_c(my_string):
     arr = []
     for i in my_string:
         if i == "c" or i == "C":
