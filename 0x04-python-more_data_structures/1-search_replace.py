@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 def search_replace(my_list, search, replace):
-	arr = my_lisiit
-	for i in arr:
-		if 1 == search:
-			arr[array.index(i)] = replace
-	return arr
+    arr = my_list[:]
+    for i in arr:
+        if i == search:
+            arr[arr.index(i)] = replace
+    return 
