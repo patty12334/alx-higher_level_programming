@@ -1,20 +1,24 @@
 #!/usr/bin/python3
 '''
-A module for working with squares.
+A module for working with singly linked lists.
 '''
 
 
 class Square:
     '''
-    this represents a 2D Polygon
-    with 4 equal and perpendicular sides.
+    this represents a node in a singly linked list.
     '''
-    def __init__(self, size=0):
+    def __init__(self, size=0, position=(0, 0)):
         self.size = size
+        self.position = position
 
     @property
     def size(self):
         return self.__size
+
+    @property
+    def position(self):
+        return self.__position
 
     @size.setter
     def size(self, value):
@@ -26,130 +30,40 @@ class Square:
             else:
                 self.__size = value
 
-    def area(self):
-        return self.size ** 2
-
-    def __eq__(self, value):
-        if isinstance(value, Square):
-            return self.area() == value.area()
+    @position.setter
+    def position(self, value):
+        is_invalid_value = True
+        error_msg = 'position must be a tuple of 2 positive integers'
+        if isinstance(value, tuple):
+            if len(value) == 2:
+                if isinstance(value[0], int) and isinstance(value[1], int):
+                    if value[0] >= 0 and value[1] >= 0:
+                        is_invalid_value = False
+        if is_invalid_value:
+            raise TypeError(error_msg)
         else:
-            return False
-
-    def __ne__(self, value):
-        if isinstance(value, Square):
-            return self.area() != value.area()
-        else:
-            return True
-
-    def __gt__(self, value):
-        if isinstance(value, Square):
-            return self.area() > value.area()
-        else:
-            err_msg = "'>' not supported between instances of 'Square' and"
-            val_type = str(type(value)).split("'")[1]
-            raise TypeError("{} '{}'".format(err_msg, val_type))
-            return False
-
-    def __ge__(self, value):
-        if isinstance(value, Square):
-            return self.area() >= value.area()
-        else:
-            err_msg = "'>=' not supported between instances of 'Square' and"
-            val_type = str(type(value)).split("'")[1]
-            raise TypeError("{} '{}'".format(err_msg, val_type))
-            return False
-
-    def __lt__(self, value):
-        if isinstance(value, Square):
-            return self.area() < value.area()
-        else:
-            err_msg = "'<' not supported between instances of 'Square' and"
-            val_type = str(type(value)).split("'")[1]
-            raise TypeError("{} '{}'".format(err_msg, val_type))
-            return False
-
-    def __le__(self, value):
-        if isinstance(value, Square):
-            return self.area() <= value.area()
-        else:
-            err_msg = "'<=' not supported between instances of 'Square' and"
-            val_type = str(type(value)).split("'")[1]
-            raise TypeError("{} '{}'".format(err_msg, val_type))
-            return False#!/usr/bin/python3
-'''
-A module for working with squares.
-'''
-
-
-class Square:
-    '''
-    this represents a 2D Polygon
-    with 4 equal and perpendicular sides.
-    '''
-    def __init__(self, size=0):
-        self.size = size
-
-    @property
-    def size(self):
-        return self.__size
-
-    @size.setter
-    def size(self, value):
-        if not isinstance(value, int):
-            raise TypeError('size must be an integer')
-        else:
-            if value < 0:
-                raise ValueError('size must be >= 0')
-            else:
-                self.__size = value
+            self.__position = value
 
     def area(self):
         return self.size ** 2
 
-    def __eq__(self, value):
-        if isinstance(value, Square):
-            return self.area() == value.area()
+    def my_print(self):
+        if self.size == 0:
+            print('\n')
         else:
-            return False
+            print('{}'.format('\n' * self.position[1]), end='')
+            for i in range(self.size):
+                print('{}{}'.format(' ' * self.position[0], '#' * self.size))
 
-    def __ne__(self, value):
-        if isinstance(value, Square):
-            return self.area() != value.area()
+    def __str__(self):
+        res = []
+        if self.size == 0:
+            res.append('')
         else:
-            return True
-
-    def __gt__(self, value):
-        if isinstance(value, Square):
-            return self.area() > value.area()
-        else:
-            err_msg = "'>' not supported between instances of 'Square' and"
-            val_type = str(type(value)).split("'")[1]
-            raise TypeError("{} '{}'".format(err_msg, val_type))
-            return False
-
-    def __ge__(self, value):
-        if isinstance(value, Square):
-            return self.area() >= value.area()
-        else:
-            err_msg = "'>=' not supported between instances of 'Square' and"
-            val_type = str(type(value)).split("'")[1]
-            raise TypeError("{} '{}'".format(err_msg, val_type))
-            return False
-
-    def __lt__(self, value):
-        if isinstance(value, Square):
-            return self.area() < value.area()
-        else:
-            err_msg = "'<' not supported between instances of 'Square' and"
-            val_type = str(type(value)).split("'")[1]
-            raise TypeError("{} '{}'".format(err_msg, val_type))
-            return False
-
-    def __le__(self, value):
-        if isinstance(value, Square):
-            return self.area() <= value.area()
-        else:
-            err_msg = "'<=' not supported between instances of 'Square' and"
-            val_type = str(type(value)).split("'")[1]
-            raise TypeError("{} '{}'".format(err_msg, val_type))
-            return False
+            if self.position[1] > 0:
+                res.append('{}'.format('\n' * (self.position[1] - 1)))
+            for i in range(self.size):
+                res.append('{}{}'.format(
+                    ' ' * self.position[0],
+                    '#' * self.size))
+        return '\n'.join(res)
