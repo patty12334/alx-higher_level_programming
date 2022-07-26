@@ -1,6 +1,5 @@
 #!/usr/bin/python3
-"""
-    module to create a class Rectangle that defines a rectangle
+"""module to create a class Rectangle that defines a rectangle
 """
 
 
@@ -13,6 +12,11 @@ class Rectangle():
         height (int): height class attribute
         area(): returns the rectangle area
         perimeter(): returns the rectangle parameter
+        __str__: print rectangle with character #
+        __repr__: return a string representation of
+                 the rectangle to be able to recreate
+                 a new instance by using eval()
+        ___del___: Print the message Bye rectangle...
     Args:
         width (int): width of the rectangle
         height (int): height of the rectangle
@@ -80,3 +84,10 @@ class Rectangle():
             for i in range(0, h - 1):
                 print("#" * w)
             return ("#" * w)
+
+    def __repr__(self):
+        rp = "Rectangle(" + str(self.__width) + ", " + str(self.__height) + ")"
+        return rp
+
+    def __del__(self):
+        print("Bye rectangle...")

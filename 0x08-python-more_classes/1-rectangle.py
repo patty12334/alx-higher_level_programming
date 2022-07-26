@@ -1,4 +1,7 @@
-te a class Rectangle that defines a rectangle
+#!/usr/bin/python3
+
+"""
+    module to create a class Rectangle that defines a rectangle
 """
 
 
@@ -9,8 +12,6 @@ class Rectangle():
     Attributes:
         width (int): width class attribute
         height (int): height class attribute
-        area(): returns the rectangle area
-        perimeter(): returns the rectangle parameter
     Args:
         width (int): width of the rectangle
         height (int): height of the rectangle
@@ -22,8 +23,17 @@ class Rectangle():
     """
 
     def __init__(self, width=0, height=0):
-        self.__width = width
-        self.__height = height
+        if type(width) != int:
+            raise TypeError("width must be an integer")
+        elif width < 0:
+            raise ValueError("width must be >= 0")
+        elif type(height) != int:
+            raise TypeError("height must be an integer")
+        elif height < 0:
+            raise ValueError("height must be >= 0")
+        else:
+            self.__width = width
+            self.__height = height
 
     @property
     def width(self):
@@ -50,12 +60,3 @@ class Rectangle():
             raise ValueError("height must be >= 0")
         else:
             self.__height = value
-
-    def area(self):
-        return self.__height * self.__width
-
-    def perimeter(self):
-        if self.__width == 0 or self.__height == 0:
-            return 0
-        else:
-            return 2 * (self.__height + self.__width)
