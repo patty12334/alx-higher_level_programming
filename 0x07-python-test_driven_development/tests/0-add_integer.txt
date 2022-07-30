@@ -1,63 +1,51 @@
-------------------------------------------
+'''
+# Importing the required function
+>>> from importlib import import_module
+>>> add_integer = import_module('0-add_integer').add_integer
 
-      Add-integer Test file
+# Valid test arguments
+>>> add_integer(3, 4)
+7
+>>> add_integer(2)
+100
+>>> add_integer(1.2, 5.8)
+6
 
-++++++++++++++++++++++++++++++++++++++++++
-This is a test file for add_integer module
-++++++++++++++++++++++++++++++++++++++++++
+# Test for invalid arguments
+>>> try:
+...     add_integer('3', 3)
+... except TypeError as ex:
+...     print(ex.args[0])
+a must be an integer
+>>> try:
+...     add_integer(('3'), 3)
+... except TypeError as ex:
+...     print(ex.args[0])
+a must be an integer
+>>> try:
+...     add_integer(3, None)
+... except TypeError as ex:
+...     print(ex.args[0])
+b must be an integer
+>>> try:
+...     add_integer(3, '4')
+... except TypeError as ex:
+...     print(ex.args[0])
+b must be an integer
+>>> try:
+...     add_integer(float('inf'), float('inf'))
+... except Exception as ex:
+...     print(ex.args[0])
+cannot convert float infinity to integer
+>>> try:
+...     add_integer(float('inf'), 4)
+... except Exception as ex:
+...     print(ex.args[0])
+cannot convert float infinity to integer
+>>> try:
+...     add_integer(float('NaN'), 5)
+... except Exception as ex:
+...     print(ex.args[0])
+cannot convert float NaN to integer
 
- add_integer - compute the sum of two integer and return the result
- a (int): first argument should contain integer or float value
- b (int): second argument should contain integer or float value
-          b is initialise to 98 (b = 98)
-NB: Other data types apart from int and float are not supported
-------------------------------------------
-Import the function required for testing from the module
-
-    >>> add_integer = __import__('0-add_integer').add_integer
-
-Start testing with some correct input
-
-#Test for a is integer and b is integer
-    >>> print(add_integer(2, 4))
-    6
-
-#Test for a is float and b is negative int
-    >>> print(add_integer(5.4, -3))
-    2
-
-#Test for a is negative float and b is float
-    >>> print(add_integer(-3.7, 5.2))
-    2
-
-#Test for a is bool and b is int
-    >>> try:
-    ...     print(add_integer(True, 5))
-    ... except Exception as e:
-    ...     print(e)
-    a must be an integer
-
-#Test for a is float and b is empty
-    >>> print(add_integer(98.6, ))
-    196
-
-#Test for both are None
-    >>> try:
-    ...     print(add_integer(None))
-    ... except Exception as e:
-    ...     print(e)
-    a must be an integer
-
-#Test for a is int and b is string
-    >>> try:
-    ...     print(add_integer(34, "Two"))
-    ... except Exception as e:
-    ...     print(e)
-    b must be an integer
-
-#Test for a is float and b is array
-    >>> try:
-    ...     print(add_integer(55.40, ["3", 6, 8, 9]))
-    ... except Exception as e:
-    ...     print(e)
-    b must be an integer
+'''
