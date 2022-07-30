@@ -71,4 +71,3 @@ Start testing with some different inputs
     ... except Exception as e:
     ...     print(e)
     Each row of matrix must have the same size
-
