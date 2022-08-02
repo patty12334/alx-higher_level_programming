@@ -14,4 +14,3 @@ class MyList(list):
         sorted_list = self.copy()
         sorted_list.sort()
         print(sorted_list)
-~
